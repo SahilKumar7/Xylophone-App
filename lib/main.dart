@@ -1,10 +1,35 @@
 import 'package:flutter/material.dart';
 import 'package:audioplayers/audioplayers.dart';
 
-void main() => runApp(XylophoneApp());
+void main() => runApp(const XylophoneApp());
 
 class XylophoneApp extends StatelessWidget {
   const XylophoneApp({super.key});
+
+  Future<void> playSound(int soundNumber) async {
+    final player = AudioPlayer();
+    await player.play(
+      AssetSource('note$soundNumber.wav'),
+    );
+  }
+
+  Widget buildKey({required int soundNumber, required Color color}) {
+    return Expanded(
+      child: FilledButton(
+        onPressed: () {
+          playSound(soundNumber);
+        },
+        style: ButtonStyle(
+          backgroundColor: MaterialStatePropertyAll<Color>(color),
+          enableFeedback: false,
+          shape: const MaterialStatePropertyAll<OutlinedBorder>(
+            BeveledRectangleBorder(),
+          ),
+        ),
+        child: null,
+      ),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -14,139 +39,13 @@ class XylophoneApp extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: <Widget>[
-              Expanded(
-                child: FilledButton(
-                  onPressed: () async {
-                    final player = AudioPlayer();
-                    await player.play(
-                      AssetSource('note1.wav'),
-                    );
-                  },
-                  style: const ButtonStyle(
-                    backgroundColor:
-                        MaterialStatePropertyAll<Color>(Colors.redAccent),
-                    enableFeedback: false,
-                    shape: MaterialStatePropertyAll<OutlinedBorder>(
-                      BeveledRectangleBorder(),
-                    ),
-                  ),
-                  child: const Text(''),
-                ),
-              ),
-              Expanded(
-                child: FilledButton(
-                  onPressed: () async {
-                    final player = AudioPlayer();
-                    await player.play(
-                      AssetSource('note2.wav'),
-                    );
-                  },
-                  style: const ButtonStyle(
-                    backgroundColor:
-                        MaterialStatePropertyAll<Color>(Colors.orangeAccent),
-                    enableFeedback: false,
-                    shape: MaterialStatePropertyAll<OutlinedBorder>(
-                      BeveledRectangleBorder(),
-                    ),
-                  ),
-                  child: const Text(''),
-                ),
-              ),
-              Expanded(
-                child: FilledButton(
-                  onPressed: () async {
-                    final player = AudioPlayer();
-                    await player.play(
-                      AssetSource('note3.wav'),
-                    );
-                  },
-                  style: const ButtonStyle(
-                    backgroundColor:
-                        MaterialStatePropertyAll<Color>(Colors.yellowAccent),
-                    enableFeedback: false,
-                    shape: MaterialStatePropertyAll<OutlinedBorder>(
-                      BeveledRectangleBorder(),
-                    ),
-                  ),
-                  child: const Text(''),
-                ),
-              ),
-              Expanded(
-                child: FilledButton(
-                  onPressed: () async {
-                    final player = AudioPlayer();
-                    await player.play(
-                      AssetSource('note4.wav'),
-                    );
-                  },
-                  style: const ButtonStyle(
-                    backgroundColor: MaterialStatePropertyAll<Color>(
-                        Colors.lightGreenAccent),
-                    enableFeedback: false,
-                    shape: MaterialStatePropertyAll<OutlinedBorder>(
-                      BeveledRectangleBorder(),
-                    ),
-                  ),
-                  child: const Text(''),
-                ),
-              ),
-              Expanded(
-                child: FilledButton(
-                  onPressed: () async {
-                    final player = AudioPlayer();
-                    await player.play(
-                      AssetSource('note5.wav'),
-                    );
-                  },
-                  style: const ButtonStyle(
-                    backgroundColor:
-                        MaterialStatePropertyAll<Color>(Colors.greenAccent),
-                    enableFeedback: false,
-                    shape: MaterialStatePropertyAll<OutlinedBorder>(
-                      BeveledRectangleBorder(),
-                    ),
-                  ),
-                  child: const Text(''),
-                ),
-              ),
-              Expanded(
-                child: FilledButton(
-                  onPressed: () async {
-                    final player = AudioPlayer();
-                    await player.play(
-                      AssetSource('note6.wav'),
-                    );
-                  },
-                  style: const ButtonStyle(
-                    backgroundColor:
-                        MaterialStatePropertyAll<Color>(Colors.blueAccent),
-                    enableFeedback: false,
-                    shape: MaterialStatePropertyAll<OutlinedBorder>(
-                      BeveledRectangleBorder(),
-                    ),
-                  ),
-                  child: const Text(''),
-                ),
-              ),
-              Expanded(
-                child: FilledButton(
-                  onPressed: () async {
-                    final player = AudioPlayer();
-                    await player.play(
-                      AssetSource('note7.wav'),
-                    );
-                  },
-                  style: const ButtonStyle(
-                    backgroundColor: MaterialStatePropertyAll<Color>(
-                        Colors.deepPurpleAccent),
-                    enableFeedback: false,
-                    shape: MaterialStatePropertyAll<OutlinedBorder>(
-                      BeveledRectangleBorder(),
-                    ),
-                  ),
-                  child: const Text(''),
-                ),
-              ),
+              buildKey(soundNumber: 1, color: Colors.red),
+              buildKey(soundNumber: 2, color: Colors.orange),
+              buildKey(soundNumber: 3, color: Colors.yellow),
+              buildKey(soundNumber: 4, color: Colors.lightGreen),
+              buildKey(soundNumber: 5, color: Colors.green),
+              buildKey(soundNumber: 6, color: Colors.blue),
+              buildKey(soundNumber: 7, color: Colors.deepPurple),
             ],
           ),
         ),
