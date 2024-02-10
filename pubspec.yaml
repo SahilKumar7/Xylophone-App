@@ -23,3 +23,7 @@ flutter:
   uses-material-design: true
   assets:
     - assets/
+  fonts:
+    - family: Shantell Sans
+      fonts:
+        - asset: fonts/ShantellSans-Regular.ttf
