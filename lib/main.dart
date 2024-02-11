@@ -22,8 +22,18 @@ class XylophoneApp extends StatelessWidget {
         style: ButtonStyle(
           backgroundColor: MaterialStatePropertyAll<Color>(color),
           enableFeedback: false,
+          side: const MaterialStatePropertyAll<BorderSide>(
+            BorderSide(
+              width: 1.0,
+              color: Colors.black,
+            ),
+          ),
           shape: const MaterialStatePropertyAll<OutlinedBorder>(
-            BeveledRectangleBorder(),
+            BeveledRectangleBorder(
+              borderRadius: BorderRadius.all(
+                Radius.elliptical(5, 5),
+              ),
+            ),
           ),
         ),
         child: null,
@@ -36,6 +46,7 @@ class XylophoneApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: Scaffold(
+        backgroundColor: Colors.grey.shade200,
         appBar: AppBar(
           title: const Text(
             'Xylophone',
@@ -49,17 +60,28 @@ class XylophoneApp extends StatelessWidget {
           foregroundColor: const Color(0xFFDBFCFF),
         ),
         body: SafeArea(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: <Widget>[
-              buildKey(soundNumber: 1, color: Colors.red),
-              buildKey(soundNumber: 2, color: Colors.orange),
-              buildKey(soundNumber: 3, color: Colors.yellow),
-              buildKey(soundNumber: 4, color: Colors.lightGreen),
-              buildKey(soundNumber: 5, color: Colors.green),
-              buildKey(soundNumber: 6, color: Colors.blue),
-              buildKey(soundNumber: 7, color: Colors.deepPurple),
-            ],
+          child: Container(
+            padding: const EdgeInsets.all(8.0),
+            decoration: const BoxDecoration(
+              gradient: LinearGradient(
+                colors: [Color(0xffeacda3), Color(0xffd6ae7b)],
+                stops: [0, 1],
+                begin: Alignment.bottomCenter,
+                end: Alignment.topCenter,
+              ),
+            ),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: <Widget>[
+                buildKey(soundNumber: 1, color: Colors.red),
+                buildKey(soundNumber: 2, color: Colors.orange),
+                buildKey(soundNumber: 3, color: Colors.yellow),
+                buildKey(soundNumber: 4, color: Colors.lightGreen),
+                buildKey(soundNumber: 5, color: Colors.green),
+                buildKey(soundNumber: 6, color: Colors.blue),
+                buildKey(soundNumber: 7, color: Colors.deepPurple),
+              ],
+            ),
           ),
         ),
       ),
