@@ -34,7 +34,20 @@ class XylophoneApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       home: Scaffold(
+        appBar: AppBar(
+          title: const Text(
+            'Xylophone',
+            style: TextStyle(
+              fontFamily: 'Shantell Sans',
+              fontSize: 25,
+            ),
+          ),
+          centerTitle: true,
+          backgroundColor: Colors.teal,
+          foregroundColor: const Color(0xFFDBFCFF),
+        ),
         body: SafeArea(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
